@@ -3,7 +3,6 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "RobotContainer.h"
-#include "commands/Autos.h"
 
 RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems here
@@ -14,12 +13,7 @@ RobotContainer::RobotContainer() {
 
 void RobotContainer::ConfigureBindings() {
   // Configure your trigger bindings here
-  m_driverController.X().WhileTrue(m_driveSubsystem.Move(1.0));
-  m_driverController.Y().WhileTrue(m_driveSubsystem.Move(-1.0));
+  m_driverController.X().WhileTrue(m_driveSubsystem.Move(0.2));
+  m_driverController.Y().WhileTrue(m_driveSubsystem.Move(-0.2));
   m_driverController.A().WhileTrue(m_driveSubsystem.Move(0.0));
-}
-
-frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
-  // An example command will be run in autonomous
-  return autos::ExampleAuto(&m_subsystem);
 }
