@@ -13,7 +13,8 @@ RobotContainer::RobotContainer() {
 
 void RobotContainer::ConfigureBindings() {
   // Configure your trigger bindings here
-  m_driverController.X().WhileTrue(m_driveSubsystem.Move(0.2));
-  m_driverController.Y().WhileTrue(m_driveSubsystem.Move(-0.2));
-  m_driverController.A().WhileTrue(m_driveSubsystem.Move(0.0));
-}
+  m_driverController.LeftStick().WhileTrue(m_driveSubsystem.Move(0.2));
+  m_driverController.RightStick().WhileTrue(m_driveSubsystem.Turn(0.2));
+  m_driverController.LeftStick().WhileFalse(m_driveSubsystem.Move(0.0));
+  m_driverController.RightStick().WhileFalse(m_driveSubsystem.Turn(0.0));
+};

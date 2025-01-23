@@ -3,14 +3,26 @@
 
 DriveSubsystem::DriveSubsystem () {};
 
-frc2::CommandPtr DriveSubsystem::Move(float s) {
-  frc::SmartDashboard::PutNumber("fgh", s);
+frc2::CommandPtr DriveSubsystem::Move(float Speed) {
+  frc::SmartDashboard::PutNumber("fgh", Speed);
   return RunOnce(
-      [this, s] { 
-        frc::SmartDashboard::PutNumber("qq", s);
-        m_right1.Set(s);
-        m_left1.Set(-s);
-        m_right2.Set(s);
-        m_left2.Set(-s);
+      [this, Speed] { 
+        frc::SmartDashboard::PutNumber("qq", Speed);
+        m_right1.Set(Speed);
+        m_left1.Set(-Speed);
+        m_right2.Set(Speed);
+        m_left2.Set(-Speed);
   });
-}
+};
+
+frc2::CommandPtr DriveSubsystem::Turn(float turn) {
+  frc::SmartDashboard::PutNumber("idk", turn);
+  return RunOnce(
+      [this, turn] { 
+        frc::SmartDashboard::PutNumber("huh", turn);
+        m_right1.Set(turn);
+        m_left1.Set(turn);
+        m_right2.Set(turn);
+        m_left2.Set(turn);
+  });
+};
