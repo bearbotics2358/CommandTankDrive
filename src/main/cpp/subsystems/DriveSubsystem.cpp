@@ -3,26 +3,19 @@
 
 DriveSubsystem::DriveSubsystem () {};
 
-frc2::CommandPtr DriveSubsystem::Move(float Speed) {
-  frc::SmartDashboard::PutNumber("fgh", Speed);
-  return RunOnce(
-      [this, Speed] { 
-        frc::SmartDashboard::PutNumber("qq", Speed);
-        m_right1.Set(Speed);
-        m_left1.Set(-Speed);
-        m_right2.Set(Speed);
-        m_left2.Set(-Speed);
-  });
+void DriveSubsystem::LeftMotors(float speed) {
+  frc::SmartDashboard::PutNumber("move speed", speed);
+  m_right1.Set(speed);
+  m_right2.Set(speed);
 };
 
-frc2::CommandPtr DriveSubsystem::Turn(float turn) {
-  frc::SmartDashboard::PutNumber("idk", turn);
-  return RunOnce(
-      [this, turn] { 
-        frc::SmartDashboard::PutNumber("huh", turn);
-        m_right1.Set(turn);
-        m_left1.Set(turn);
-        m_right2.Set(turn);
-        m_left2.Set(turn);
-  });
+void DriveSubsystem::RightMotors(float speed) {
+        frc::SmartDashboard::PutNumber("turn speed", speed);
+        // -speed because left motors inverted
+        m_left1.Set(-speed);
+        m_left2.Set(-speed);
 };
+
+frc2::CommandPtr DriveSubsystem::TestMethodCommand() {
+  return RunOnce([this] {RightMotors(0.2);}).WithTimeout(1.0_s);
+}

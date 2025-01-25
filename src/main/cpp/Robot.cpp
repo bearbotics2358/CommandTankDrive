@@ -33,9 +33,16 @@ void Robot::DisabledPeriodic() {}
  * This autonomous runs the autonomous command selected by your {@link
  * RobotContainer} class.
  */
-void Robot::AutonomousInit() {}
+void Robot::AutonomousInit() {
+  m_autonomousCommand = m_container.GetAutonomousCommand();
 
-void Robot::AutonomousPeriodic() {}
+  if (m_autonomousCommand) {
+    m_autonomousCommand->Schedule();
+  }
+}
+
+void Robot::AutonomousPeriodic() {
+}
 
 void Robot::TeleopInit() {
   // This makes sure that the autonomous stops running when
