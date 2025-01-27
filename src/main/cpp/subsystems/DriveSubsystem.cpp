@@ -16,6 +16,18 @@ void DriveSubsystem::RightMotors(float speed) {
         m_left2.Set(-speed);
 };
 
+void DriveSubsystem::Move(float speed) {
+        frc::SmartDashboard::PutNumber("turn speed", speed);
+        // -speed because left motors inverted
+        m_left1.Set(-speed);
+        m_left2.Set(-speed);
+        m_right1.Set(speed);
+        m_right2.Set(speed);
+};
+
 frc2::CommandPtr DriveSubsystem::TestMethodCommand() {
-  return RunOnce([this] {RightMotors(0.2);}).WithTimeout(1.0_s);
-}
+  return RunOnce([this] {RightMotors(0.2);}).WithTimeout(500_s);
+  return RunOnce([this] {LeftMotors(0.2);}).WithTimeout(500_s);
+  return RunOnce([this] {Move(0.2);}).WithTimeout(500_s);
+  return RunOnce([this] {Move(-0.2);}).WithTimeout(500_s);
+};

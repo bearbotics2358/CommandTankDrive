@@ -8,6 +8,7 @@ class DriveSubsystem: public frc2::SubsystemBase {
         DriveSubsystem();
         void LeftMotors(float speed);
         void RightMotors(float speed);
+        void Move(float speed);
         frc2::CommandPtr TestMethodCommand();
     private:
         rev::CANSparkMax m_right1{2, rev::CANSparkMax::MotorType::kBrushed};
